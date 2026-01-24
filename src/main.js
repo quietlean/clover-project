@@ -71,9 +71,10 @@ function animate() {
 
   requestAnimationFrame(animate);
 
-  if (skull) { //sonst startet die animation befor das modell geladen hat
+  skull.rotation.y = scrollValue;
+  /*if (skull) { //sonst startet die animation befor das modell geladen hat
     skull.rotation.y = scrollValue;
-  }
+  }*/
 
   renderer.render(scene, camera);
 }
