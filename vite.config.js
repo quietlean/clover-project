@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/colver-project/',
+  base: '/clover-project/',
 })
