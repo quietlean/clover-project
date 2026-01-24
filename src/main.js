@@ -1,0 +1,85 @@
+// 'npx vite' um den server zu starten
+
+import './style.css'
+import * as THREE from 'three';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'; //three/examples/jsm/loaders/OBJLoader.js
+
+// ========== Die Szene wird erstellt ==========
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x2b2e34);
+
+const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 2000)
+
+const renderer = new THREE.WebGLRenderer({ //Hier wird ausgewählt durch was unser canvas gerendert wird
+  //canvas: document.querySelector('#bg'),
+})
+
+renderer.setPixelRatio(window.devicePixelRatio); //das ist glaube dafür das das canvas die gleiche Seitenratio hat wie der Browser
+renderer.setSize(window.innerWidth, window.innerHeight); //das sorgt dafür das das canvas Fullscreen ist
+renderer.setAnimationLoop(animate);
+document.body.appendChild( renderer.domElement); //in dem fall wird das canvas erst durch das js script ins HTML eingefügt
+
+camera.position.z = 5;
+
+renderer.render(scene, camera); //Hier geben wir jetzt dem renderer die szene und die Kamera die gerendert werden sollen
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5, 5, 5);
+scene.add(light);
+
+// ========== Die Objekte werden der Szene hinzugefügt ==========
+
+const loader = new OBJLoader();
+//const object = await loader.loadAsync('/3d-assets/skullgoon.obj')
+//scene.add(object);
+
+let skull = null; // hier wird das obj reingeladen
+
+loader.load(
+  '/public/modelle/skull-1.obj',
+  (obj) => {
+    skull = obj;
+
+    obj.traverse((child) => {
+      if (child.isMesh) {
+        child.material = new THREE.MeshPhongMaterial({
+          color: 0x00ff00,
+          flatShading: true,
+        });
+      }
+    });
+
+    obj.scale.set(0.5, 0.5, 0.5); // OBJ ist oft riesig
+    scene.add(obj);
+  },
+  undefined,
+  (error) => {
+    console.error(error);
+  }
+);
+
+// ========== Die Animation wird ausgeführt ==========
+
+let scrollValue = 0
+
+window.addEventListener('wheel', (event) => {
+  scrollValue += event.deltaY * 0.001
+})
+
+function animate() {
+
+  requestAnimationFrame(animate);
+
+  if (skull) { //sonst startet die animation befor das modell geladen hat
+    skull.rotation.y = scrollValue;
+  }
+
+  renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => { //das sorgt dafür, dass das canvas und die kamera und die szene upgedated werden, wenn sich der viewport ändert
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}); 

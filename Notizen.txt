@@ -1,0 +1,10 @@
+Hier paar Notizen für wichtige commands
+
+Das Projekt wird am Anfang initiert mit: 
+$ npm create vite@latest project-name -- --template vanilla
+
+Um den server zu starten:
+$ npx vite
+
+Um einen "production-ready buil" zu erzeugen, der in dist ist:
+$ npm run build
