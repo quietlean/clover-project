@@ -1,8 +1,8 @@
-# CLOV4R Website
+# CLOV4R Website 🍀
 
 Hier werden erstmal ein paar hilfreiche Sachen dokumentiert, damit man das mit dem Vite-Projekt später nach kapiert.
 
-## Hilfreiche Commands
+## Hilfreiche Commands 🎀
 
 Ein neues Vite Projekt wird initiert mit: 
 ``` 
