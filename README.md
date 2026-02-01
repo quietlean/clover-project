@@ -5,21 +5,31 @@ Hier werden erstmal ein paar hilfreiche Sachen dokumentiert, damit man das mit d
 ## Hilfreiche Commands
 
 Ein neues Vite Projekt wird initiert mit: 
-`$ npm create vite@latest project-name -- --template vanilla`
+``` 
+$ npm create vite@latest project-name -- --template vanilla
+```  
 
 Bibliotheken/Dependencies werden alle in dem Projekt installiert, wodurch nichts davon global installiert werden muss. Nur **npm** muss global installiert sein. In der Three.js Doku steht ganz gut was man am Anfang braucht: [Three.js](https://threejs.org/manual/#en/installation)
 
 Wenn das Repository geklont wurde und npm installiert ist, können die Dependencies lokal installiert werden mit: 
-`$ npm install`
+``` 
+$ npm install
+```
 
 Ein lokaler Server kann gestartet werden mit:
-`$ npx vite`
+``` 
+$ npx vit
+```
 
 Um einen "production-ready build" zu erzeugen, der im Dist Ordner ist:
-`$ npm run build` 
+``` 
+$ npm run build
+``` 
 
 Der Inhalt dieses ordner ist quasi der Fertige Build wie er auf GitHub sein sollte. Der kann getest werden mit:
-`$ npx vite preview` 
+```
+$ npx vite preview
+``` 
 
 Man kann den wohl auch anders starten ohne Node.js/npm, z.B. mit:
 ``` 
