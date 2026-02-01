@@ -2,7 +2,9 @@
 
 import './style.css'
 import * as THREE from 'three';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'; //three/examples/jsm/loaders/OBJLoader.js
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'; //three/examples/jsm/loaders/OBJLoader.js three/examples/jsm/loaders/OBJLoader.js
+
+console.log(OBJLoader);
 
 // ========== Die Szene wird erstellt ==========
 
@@ -36,11 +38,13 @@ const loader = new OBJLoader();
 
 let skull = null; // hier wird das obj reingeladen
 
+console.log('🚀 VOR loader.load');
 loader.load(
-  '/public/modelle/skull-1.obj',
+  '/clover-project/modelle/skull-1.obj',
   (obj) => {
     skull = obj;
 
+    console.log('OBJ GELADEN .2');
     obj.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshPhongMaterial({
@@ -57,7 +61,30 @@ loader.load(
   (error) => {
     console.error(error);
   }
+
+  
 );
+console.log('🚀 NACH loader.load');
+/*
+async function loadSkull() {
+  const obj = await loader.loadAsync('/public/modelle/skull-1.obj');
+
+  obj.traverse((child) => {
+    if (child.isMesh) {
+      child.material = new THREE.MeshPhongMaterial({
+        color: 0x00ff00,
+        flatShading: true,
+      });
+    }
+  });
+
+  obj.scale.set(0.5, 0.5, 0.5);
+  scene.add(obj);
+  skull = obj;
+}
+
+loadSkull();
+*/
 
 // ========== Die Animation wird ausgeführt ==========
 

@@ -8,3 +8,7 @@ $ npx vite
 
 Um einen "production-ready buil" zu erzeugen, der in dist ist:
 $ npm run build
+
+Um die dependencies neu zu generieren:
+$ rm -rf node-modules package-lock.json 	#Das entfernt die alten listen
+$ npm install 					#Das generiert neue Listen
