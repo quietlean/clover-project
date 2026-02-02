@@ -1,5 +1,7 @@
 # CLOV4R Website 🍀
 
+Hier gehts zur Website: [CLOV4R_Website](https://quietlean.github.io/clover-project/)
+
 Hier werden erstmal ein paar hilfreiche Sachen dokumentiert, damit man das mit dem Vite-Projekt später nach kapiert.
 
 ## Hilfreiche Commands 🎀
