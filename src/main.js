@@ -89,13 +89,16 @@ loadSkull();
 // ========== Die Animation wird ausgeführt ==========
 
 // Für scrollen auf Computern
-let scrollValue = 0
+let scrollValue = 0;
 
 window.addEventListener('wheel', (event) => {
   scrollValue += event.deltaY * 0.001
 })
 
 // Für scrollen auf Geräten mit Touch-Display
+
+let startY = 0;
+
 window.addEventListener('touchstart', (event) => {
   startY = event.touches[0].clientY;
 }, { passive: true });
@@ -107,6 +110,7 @@ window.addEventListener('touchmove', (event) => {
   startY = y;
   event.preventDefault(); // Verhindert das Standard-Scrollverhalten der Seite
 }, { passive: false });
+
 
 function animate() {
 
