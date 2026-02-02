@@ -26,10 +26,23 @@ camera.position.z = 5;
 
 renderer.render(scene, camera); //Hier geben wir jetzt dem renderer die szene und die Kamera die gerendert werden sollen
 
-const light = new THREE.DirectionalLight(0xffffff, 1);
+const light = new THREE.DirectionalLight(0xffffff, 3);
 light.position.set(5, 5, 5);
 scene.add(light);
 
+/*
+const spotLight = new THREE.SpotLight( 0xff0066 ,10);
+spotLight.position.set( 5, 5, 5);
+spotLight.castShadow = true;
+spotLight.shadow.camera.near = 50;
+spotLight.shadow.camera.far = 400;
+spotLight.shadow.camera.fov = 300;
+scene.add(spotLight);
+*/
+/*
+const ambient = new THREE.AmbientLight( 0xff0066 ,1);
+scene.add(ambient);
+*/
 // ========== Die Objekte werden der Szene hinzugefügt ==========
 
 const loader = new OBJLoader();
@@ -47,9 +60,8 @@ loader.load(
     console.log('OBJ GELADEN .2');
     obj.traverse((child) => {
       if (child.isMesh) {
-        child.material = new THREE.MeshPhongMaterial({
-          color: 0x00ff00,
-          flatShading: true,
+        child.material = new THREE.MeshToonMaterial({
+          color: 0xff0066 
         });
       }
     });
@@ -65,6 +77,8 @@ loader.load(
   
 );
 console.log('🚀 NACH loader.load');
+
+
 /*
 async function loadSkull() {
   const obj = await loader.loadAsync('/public/modelle/skull-1.obj');
@@ -120,7 +134,7 @@ function animate() {
   /*if (skull) { //sonst startet die animation befor das modell geladen hat
     skull.rotation.y = scrollValue;
   }*/
-
+  skull.position.set(0,-0.5,0);
   renderer.render(scene, camera);
 }
 
