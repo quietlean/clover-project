@@ -42,7 +42,7 @@ body {
 }
 
 h1 {
-  font-size: 300px;
+  font-size:  clamp(150px, 20vw, 300px);
   margin: 0px;
   color: black;
 }

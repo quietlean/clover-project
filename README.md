@@ -20,8 +20,13 @@ $ npm install
 
 Ein lokaler Server kann gestartet werden mit:
 ``` 
-$ npx vit
+$ npx vite
 ```
+
+Soll der Server im lokalen Netzwerk erreichbar sein:
+``` 
+$ npx vite --host
+``` 
 
 Um einen "production-ready build" zu erzeugen, der im Dist Ordner ist:
 ``` 
@@ -39,7 +44,7 @@ $ cd dist
 $ python3 -m http.server 3000
 ``` 
 
-Es kann sein, dass **package-lock.json** und **node-modules** neu generiert werden müssen, weil die iwie abhängig sind von dem System auf dem sie generiert werden. Soweit ich das verstehe, ist das nur für GitHub Actions relevant, weil die Linux Server laufen haben. Die Dinger können jedenfalls neu generiert werden mit:
+Es kommt vor, dass **package-lock.json** und **node-modules** neu generiert werden müssen, weil die iwie abhängig sind von dem System auf dem sie generiert werden. Soweit ich das verstehe, ist das nur für GitHub Actions relevant, weil die Linux Server laufen haben. Die Dinger können jedenfalls neu generiert werden mit:
 ```
 $ rm -rf node-modules package-lock.json 	
 $ npm install 

@@ -10,6 +10,7 @@ console.log(OBJLoader);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x2b2e34);
+scene.fog = new THREE.Fog( 0x3dea36, 1, 15 );
 
 const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 2000)
 
@@ -61,7 +62,7 @@ loader.load(
     obj.traverse((child) => {
       if (child.isMesh) {
         child.material = new THREE.MeshToonMaterial({
-          color: 0xff0066 
+          color: 0xc27190 //ff6ab5 ,855b69 ,knall rot: ff0060, hell rot: 27190
         });
       }
     });
