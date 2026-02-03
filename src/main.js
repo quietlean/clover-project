@@ -2,9 +2,9 @@
 
 import './style.css'
 import * as THREE from 'three';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'; //three/examples/jsm/loaders/OBJLoader.js three/examples/jsm/loaders/OBJLoader.js
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'; //three/examples/jsm/loaders/OBJLoader.js three/examples/jsm/loaders/OBJLoader.js
 
-console.log(OBJLoader);
+console.log(GLTFLoader);
 
 // ========== Die Szene wird erstellt ==========
 
@@ -46,7 +46,7 @@ scene.add(ambient);
 */
 // ========== Die Objekte werden der Szene hinzugefügt ==========
 
-const loader = new OBJLoader();
+const loader = new GLTFLoader();
 //const object = await loader.loadAsync('/3d-assets/skullgoon.obj')
 //scene.add(object);
 
@@ -54,16 +54,17 @@ let skull = null; // hier wird das obj reingeladen
 
 console.log('🚀 VOR loader.load');
 loader.load(
-  '/clover-project/modelle/skull-1.obj',
-  (obj) => {
+  '/clover-project/modelle/buntstiftverputzer.glb',
+  (gltf) => {
+    const obj = gltf.scene;
     skull = obj;
 
     console.log('OBJ GELADEN .2');
     obj.traverse((child) => {
       if (child.isMesh) {
-        child.material = new THREE.MeshToonMaterial({
-          color: 0xc27190 //ff6ab5 ,855b69 ,knall rot: ff0060, hell rot: 27190
-        });
+        //child.material = new THREE.MeshToonMaterial({
+          //color: 0xc27190 //ff6ab5 ,855b69 ,knall rot: ff0060, hell rot: 27190
+        //});
       }
     });
 
@@ -136,6 +137,7 @@ function animate() {
     skull.rotation.y = scrollValue;
   }*/
   skull.position.set(0,-0.5,0);
+  //camera.position.z -= scrollValue * 0.1  //camera geht ran/weg mit scrolen
   renderer.render(scene, camera);
 }
 
